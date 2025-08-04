@@ -1,5 +1,10 @@
   <?php
       session_start();  
+      if(!isset($_SESSION["id"]))
+      {
+          header("location:registration.php");
+          exit;
+      }
     $search_head=include("search_header.php.");
     $search=include("search.php.");
     $id=(int)$_SESSION["id"];

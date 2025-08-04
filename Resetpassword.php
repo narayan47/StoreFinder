@@ -1,4 +1,17 @@
-<?php  include("loginhead.php")    ?>
+
+<?php  
+session_start();
+include("loginhead.php");
+  if(!isset($_SESSION["newpass"]))
+    {
+        header("location:registration.php");
+        exit;
+    }
+    else
+    {
+      unset($_SESSION["newpass"]);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,6 +1,9 @@
 <?php
 session_start();
-include("loginhead.php");   
+include("loginhead.php");  
+ if(isset($_SESSION['otp']))
+{
+$_SESSION["newpass"]="ss";
 $minutes = 5;
 $seconds = $minutes * 60;
 $otp="1";
@@ -82,14 +85,9 @@ $('.otp-input').on('input', function () {
     }
   }, 1000);";
 
- if(isset($_SESSION['otp']))
-{
   $otp=$_SESSION['otp'];
-}
 
-
-
-echo"
+  echo"
 $(document).on('click','#verify',function(e)
 {
    e.preventDefault(); 
@@ -223,4 +221,10 @@ else
 </body>
 </html>
 ";
+}
+else
+{
+    header("location:registration.php");
+    exit;
+}
 ?>

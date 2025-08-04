@@ -1,5 +1,10 @@
 <?php
    session_start();
+    if(!isset($_SESSION["id"]))
+      {
+          header("location:registration.php");
+          exit;
+      }
     include("loginhead.php");
     include("connection.php");
     $id=(int)$_SESSION["id"];

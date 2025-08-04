@@ -1,5 +1,11 @@
-<?php       
+<?php      
+session_start(); 
  include("loginhead.php");
+ if(!isset($_SESSION["id"]))
+ {
+    header("location:registration.php");
+    exit;
+ }
 ?>
 
 <!DOCTYPE html>

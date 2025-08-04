@@ -48,13 +48,13 @@
 })
  $(document).on("click","#forgot",function(e){
   const email=$('#s_email').val().trim();
-  const error=$('#al_email').val().trim();
+  const error=$('#al_email').text().trim();
     e.preventDefault();
     if (email === "") {
         $("#al_email").html("<p style='color:red;margin-left:13%'>Email is required</p>");
         $("#s_email").css("border", "1px solid red");
     }
-    else if(error ==="")
+    else if(error =="")
     {
          $.ajax({
             url:'forgotpass.php',

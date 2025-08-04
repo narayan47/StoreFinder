@@ -1,4 +1,12 @@
 <?php
+session_start();
+ if(!isset($_SESSION["id"]))
+      {
+          header("location:registration.php");
+          exit;
+      }
+   if(isset($_GET["shop"])) 
+   {
     $shop_id=$_GET["shop"];
     include("connection.php");
     $shop_data="SELECT * FROM tm_shopinfo where shop_id=$shop_id";
@@ -285,5 +293,13 @@ $(document).on('click','#submit',function(e){
 </html>";
 
      }
- $conn->close();
+      $conn->close();
+    }
+    else
+    {
+        echo "<div>
+        <h2 style='text-align:center;margin-top:20%;color:red'>Invaid Shop</h2>
+        </div>";
+    }
+
 ?>
