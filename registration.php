@@ -4,11 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Store Finder</title>
+    <link rel='icon' type='image/png' href='favicon.png' sizes="32x32">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Jquery animation , Validation -->
+     <script>
+setInterval(() => {
+  fetch('update_activity.php');
+}, 2000);
+</script>
     <script>
       $(document).ready(function(){
     $("#rf").hide();
@@ -234,15 +240,16 @@ $(document).on("blur","#s_email",function(){
             }
         })
 })
- $(document).on("blur", "#s_phone", function () {
+ $(document).on("blur", "#s_phone", function (e) {
     const phone_number = $(this).val().trim();
-    if (!/^[0-9]+$/.test(phone_number)) {
-        $("#phone").html("<p style='color:red'>Only 0-9 Number allowed in Phone number</p>");
+   if (!/^[6-9][0-9]{9}$/.test(phone_number)) {
+        $("#phone").html("<p style='color:red'>Invalid Phone number</p>");
         $("#s_phone").css("border","1px solid red")
         return;
     } else { 
             if(phone_number.length!=10)
     {
+       e.preventDefault();
          $("#phone").html("<p style='color:red'>Phone number must contain exactly 10 digits</p>");
          $("#s_phone").css("border","1px solid red");
          return;
@@ -267,6 +274,7 @@ $(document).on("blur","#s_email",function(){
             }
             if(contact === "contact")
             {
+               e.preventDefault();
                 $("#phone").html("<p style='color:red'>Contact already exist</p>");
                 $("#s_phone").css("border","1px solid red");
             }
@@ -280,10 +288,19 @@ $(document).on("blur","#s_email",function(){
     
 });
     $(document).on("click","#signup",function(e){
+      const phone_number = $("#s_phone").val().trim();
+      e.preventDefault();
         const form = document.getElementById("rf");
          if (!form.checkValidity()) {
             form.reportValidity();
             return;
+    }
+    if(phone_number.length!=10)
+    {
+       e.preventDefault();
+         $("#phone").html("<p style='color:red'>Phone number must contain exactly 10 digits</p>");
+         $("#s_phone").css("border","1px solid red");
+         return;
     }
          if($(".error").text()!="")
          {
@@ -302,7 +319,7 @@ $(document).on("blur","#s_email",function(){
             type:'POST',
             data: $("#rf").serialize(),
             success:function(response){
-                window.location.href = "index.php"; 
+              window.location.href = "index.php"; 
             }
         })
          }

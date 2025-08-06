@@ -6,6 +6,7 @@ echo "
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <link rel='icon' type='image/png' href='favicon.png' sizes='32x32'>
   <title>Store Finder</title>
    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr' crossorigin='anonymous'>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js' integrity='sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q' crossorigin='anonymous'></script>
@@ -208,6 +209,11 @@ $.ajax({
       margin-left: 1%; 
     } 
   }
+     .this_card:hover {
+      transform: scale(1.05); /* Zoom effect */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
 </style>
 
 </head>
@@ -229,6 +235,13 @@ $.ajax({
    <div id='popular' class='row '>
 </div>
     </div>
+
+
+    <script>
+setInterval(() => {
+  fetch('update_activity.php');
+}, 2000);
+</script>
 </body>   
 </html>
 

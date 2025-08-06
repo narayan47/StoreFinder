@@ -190,36 +190,27 @@ $(document).on('click','#submit',function(e){
             <div class='d-flex align-items-center mb-1 mt-4'>
             <label for='category'>Category: </label>
                         <select name='category' id='category' class='form-control w-50' style='margin-left:20px'>
-                        <option value='".htmlspecialchars($category)."'>$category</option>
-                     <option value='Accessories Repair'>Accessories Repair</option>
-                    <option value='Automobile Accessories'>Automobile Accessories</option>
-                    <option value='Bakery'>Bakery</option>
-                    <option value='Books'>Books</option>
-                    <option value='Courier Services'>Courier Services</option>
-                    <option value='Clothing & Apparel'>Clothing & Apparel</option>
-                    <option value='Cosmetics & Beauty'>Cosmetics & Beauty</option>
-                    <option value='Electronics'>Electronics</option>
-                    <option value='Fashion Combo Shop'>Fashion Combo Shop</option>
-                    <option value='Footwear'>Footwear</option>
-                    <option value='Furniture'>Furniture</option>
-                    <option value='Gift & Handicrafts'>Gift & Handicrafts</option>
-                    <option value='Grocery'>Grocery</option>
-                    <option value='Hardware & Tools'>Hardware & Tools</option>
-                    <option value='Home Decor'>Home Decor</option>
-                    <option value='Jewelry'>Jewelry</option>
-                    <option value='Kitchenware'>Kitchenware</option>
-                    <option value='Mobile & Accessories'>Mobile & Accessories</option>
-                    <option value='Pet Supplies'>Pet Supplies</option>
-                    <option value='Pharmacy'>Pharmacy</option>
-                    <option value='Sports & Fitness'>Sports & Fitness</option>
-                    <option value='Stationery'>Stationery</option>
-                    <option value='Toys & Games'>Toys & Games</option>
-                        </select>
+                        <option value='".htmlspecialchars($category)."'>$category</option>";
+                    $qry="SELECT category_name from shop_category order by category_name ASC";
+                     $result=$conn->query($qry);
+    if($result->num_rows > 0)
+    {
+        while($row=$result->fetch_assoc()){
+            $cat_name=$row["category_name"];
+                                        echo"
+<option value='$cat_name'>$cat_name</option>
+                                        ";
+        }
+        }
+
+
+        echo"                </select>
             </div><br>
              <div class='d-flex align-items-center mb-1 mt-4'>
             <label for='weekday'>Shop Open Weekday : </label>
                         <select name='weekday' id='weekday' class='form-control w-25' style='margin-left:20px'>    
                         <option value='".htmlspecialchars($weekday)."'>$weekday</option>
+                        <option value='All days'>All days</option>
                         <option value='Monday – Friday'>Monday – Friday</option>
                      <option value='Monday – Saturday'>Monday – Saturday</option>
                     <option value='Monday – Sunday'>Monday – Sunday</option>

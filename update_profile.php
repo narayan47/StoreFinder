@@ -343,6 +343,11 @@ $(document).on('click','#submit',function(e){
         }
     });
     </script>
+    <script>
+setInterval(() => {
+  fetch('update_activity.php');
+}, 2000);
+</script>
 </body>
 </html>";
 

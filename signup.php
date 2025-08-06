@@ -4,7 +4,7 @@
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try{
                 include("connection.php");
-                 $folder = 'uploads/profile/';
+                 $folder = 'uploads/domy_profile/';
         $images = glob($folder . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
          $randomImage = $images[array_rand($images)];
          $filename = basename($randomImage);
@@ -30,6 +30,9 @@
                     $sql=$conn->prepare("INSERT INTO tm_user (user_fname,user_lname,user_fullname,user_email,user_password,user_contact,profile_img)VALUES(?,?,?,?,?,?,?);");
                     $sql->bind_param("sssssss",$s_fname,$s_lname,$fullname,$s_email,$s_password,$phone,$filename);
                     $sql->execute(); 
+                     $sql_data=$conn->prepare("INSERT INTO tm_login_user (user_id)VALUES(?);");
+                    $sql_data->bind_param("i",$current_user,);
+                    $sql_data->execute(); 
                 }
                  else
                  {

@@ -11,6 +11,10 @@
     if(mysqli_num_rows($result)>0)
     {
         $_SESSION["id"] = $row["user_id"];
+        $user=$row["user_id"];
+         $sql_data=$conn->prepare("INSERT INTO tm_login_user (user_id)VALUES(?);");
+                    $sql_data->bind_param("i",$user,);
+                    $sql_data->execute(); 
         echo "exist";
     }
     else

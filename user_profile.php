@@ -9,6 +9,7 @@
         $fname= $row["user_fullname"];
         $p_img= $row["profile_img"];
     }
+    $total_shop=0;
      $shop_data="SELECT * FROM tm_shopinfo where shopkeeper_id=$id";
     $shop_result=$conn->query($shop_data);
     if($shop_result->num_rows> 0){
@@ -25,6 +26,11 @@ echo"
   <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css'>
   <style>
+    .this_card:hover {
+      transform: scale(1.05); /* Zoom effect */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 2;
+    } 
 #store{
     font-size: 70px;
     margin-left:5%;
@@ -136,7 +142,7 @@ echo"
                 echo "<div class='row g-4 mx-1'>";
             }
             echo"
-         <div class='col-lg-3 col-md-6 col-sm-12 mb-4 my-3'>
+         <div class='col-lg-3 col-md-6 col-sm-12 mb-4 my-3 this_card'>
               <a href='details.php?shop=$shop_id'>
   <div class='card shop-card h-100'>
     <div style='position: relative;'>
@@ -177,6 +183,11 @@ echo"
 echo"
 </div>
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'></script>
+<script>
+setInterval(() => {
+  fetch('update_activity.php');
+}, 2000);
+</script>
 </body>
 </html>
 ";

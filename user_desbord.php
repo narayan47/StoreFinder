@@ -5,6 +5,11 @@
           header("location:registration.php");
           exit;
       }
+
+     if (isset($_SESSION["id"]) && $_SESSION["id"] == 1) {
+    header("Location: admin.php");
+    exit;
+}
     $search_head=include("search_header.php.");
     $search=include("search.php.");
     $id=(int)$_SESSION["id"];
@@ -83,6 +88,11 @@
         }
     </script>
     <style>
+      .this_card:hover {
+      transform: scale(1.05); /* Zoom effect */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
       #your_store{
     padding:70px 70px;
     text-align: center;
@@ -271,7 +281,7 @@
                   echo "<div class='row g-4 mx-1'>";
               }
               echo"
-          <div class='col-md-3 col-sm-6 mb-5 mt-5 d-flex'>
+          <div class='col-md-3 col-sm-6 mb-5 mt-5 d-flex this_card'>
     <div class='card w-100 h-100 d-flex flex-column' id='card'>
       <div style='position: relative;'>
         <span class='bg-light px-3 py-1 rounded-3 d-flex align-items-center gap-2 shadow' style='position: absolute; top: 10px; right: 10px; z-index: 2;'>
@@ -322,6 +332,11 @@
         <a href='logout.php' class='btn btn-danger btn-sm me-5 ' onclick='Deleteuser(event)' id='delete'>Delete</a>
           </div>
   <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'></script>
+  <script>
+setInterval(() => {
+  fetch('update_activity.php');
+}, 2000);
+</script>
   </body>
   </html>
   ";

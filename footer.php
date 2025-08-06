@@ -15,7 +15,7 @@
   <div class="container text-center">
     <p class="mb-1">© 2025 Near Shops. All rights reserved.</p>
     <p class="mb-1">Made with ❤️ in India</p>
-    <p class="mb-0">Contact: <a href="mailto:support@nearshops.com" class="text-white text-decoration-underline">support@nearshops.com</a></p>
+    <p class="mb-0">Contact: <a href="mailto:storefinder.dev@gmail.com" class="text-white text-decoration-underline">storefinder.dev@gmail.com</a></p>
   </div>
 </footer>
 </body>

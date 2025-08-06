@@ -15,7 +15,7 @@
                 echo "<div class='row mx-1'>";
             }
             echo"
-             <div class='col-lg-3 col-md-6 col-sm-12 mb-4'>
+             <div class='col-lg-3 col-md-6 col-sm-12 mb-4 this_card'>
               <a href='details.php?shop=$shop_id'>
   <div class='card shop-card h-100'>
     <div style='position: relative;'>

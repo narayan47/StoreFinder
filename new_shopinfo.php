@@ -1,11 +1,13 @@
 <?php      
 session_start(); 
+include("connection.php");
  include("loginhead.php");
  if(!isset($_SESSION["id"]))
  {
     header("location:registration.php");
     exit;
  }
+ 
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +20,11 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script>
+setInterval(() => {
+  fetch('update_activity.php');
+}, 2000);
+</script>
     <script>
         $(document).ready(function(){
             $("#show_img").hide();
@@ -220,46 +227,54 @@ font-size:25px;
             <div class="d-flex align-items-center mb-1 mt-4">
             <label for="category">Category: </label>
                         <select name="category" id="category" class="form-control w-50" style="margin-left:20px">
-                     <option value="Accessories Repair">Accessories Repair</option>
-                    <option value="Automobile Accessories">Automobile Accessories</option>
-                    <option value="Bakery">Bakery</option>
-                    <option value="Books">Books</option>
-                    <option value="Courier Services">Courier Services</option>
-                    <option value="Clothing & Apparel">Clothing & Apparel</option>
-                    <option value="Cosmetics & Beauty">Cosmetics & Beauty</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Fashion Combo Shop">Fashion Combo Shop</option>
-                    <option value="Footwear">Footwear</option>
-                    <option value="Furniture">Furniture</option>
-                    <option value="Gift & Handicrafts">Gift & Handicrafts</option>
-                    <option value="Grocery">Grocery</option>
-                    <option value="Hardware & Tools">Hardware & Tools</option>
-                    <option value="Home Decor">Home Decor</option>
-                    <option value="Jewelry">Jewelry</option>
-                    <option value="Kitchenware">Kitchenware</option>
-                    <option value="Mobile & Accessories">Mobile & Accessories</option>
-                    <option value="Pet Supplies">Pet Supplies</option>
-                    <option value="Pharmacy">Pharmacy</option>
-                    <option value="Sports & Fitness">Sports & Fitness</option>
-                    <option value="Stationery">Stationery</option>
-                    <option value="Toys & Games">Toys & Games</option>
+                        <?php  
+$qry="SELECT category_name from shop_category order by category_name ASC";
+                     $result=$conn->query($qry);
+    if($result->num_rows > 0)
+    {
+        while($row=$result->fetch_assoc()){
+            $cat_name=$row["category_name"];
+                                        echo"
+<option value='$cat_name'>$cat_name</option>
+                                        ";
+        }
+        }
+
+?>
                         </select>
             </div><br>
              <div class="d-flex align-items-center mb-1 mt-4">
             <label for="weekday">Shop Open Weekday : </label>
                         <select name="weekday" id="weekday" class="form-control w-25" style="margin-left:20px">
-                            <option value="Monday – Friday">Monday – Friday</option>
-                     <option value="Monday – Saturday">Monday – Saturday</option>
-                    <option value="Monday – Sunday">Monday – Sunday</option>
-                    <option value="Saturday – Sunday">Saturday – Sunday</option>
-                    <option value="Saturday – Monday">Saturday – Monday</option>
-                    <option value="Sunday – Thursday">Sunday – Thursday</option>
-                    <option value="Friday – Sunday">Friday – Sunday</option>
-                    <option value="Wednesday – Sunday">Wednesday – Sunday</option>
-                    <option value="Thursday – Saturday">Thursday – Saturday</option>
-                    <option value="Tuesday – Saturday">Tuesday – Saturday</option>
-                    <option value="Sunday – Monday">Sunday – Monday</option>
-                    <option value="Friday – Monday">Friday – Monday</option>
+                               <option value="All days">All days</option>
+                          <option value="Monday – Monday">Monday – Monday</option>
+<option value="Monday – Tuesday">Monday – Tuesday</option>
+<option value="Monday – Wednesday">Monday – Wednesday</option>
+<option value="Monday – Thursday">Monday – Thursday</option>
+<option value="Monday – Friday">Monday – Friday</option>
+<option value="Monday – Saturday">Monday – Saturday</option>
+<option value="Monday – Sunday">Monday – Sunday</option>
+<option value="Tuesday – Tuesday">Tuesday – Tuesday</option>
+<option value="Tuesday – Wednesday">Tuesday – Wednesday</option>
+<option value="Tuesday – Thursday">Tuesday – Thursday</option>
+<option value="Tuesday – Friday">Tuesday – Friday</option>
+<option value="Tuesday – Saturday">Tuesday – Saturday</option>
+<option value="Tuesday – Sunday">Tuesday – Sunday</option>
+<option value="Wednesday – Wednesday">Wednesday – Wednesday</option>
+<option value="Wednesday – Thursday">Wednesday – Thursday</option>
+<option value="Wednesday – Friday">Wednesday – Friday</option>
+<option value="Wednesday – Saturday">Wednesday – Saturday</option>
+<option value="Wednesday – Sunday">Wednesday – Sunday</option>
+<option value="Thursday – Thursday">Thursday – Thursday</option>
+<option value="Thursday – Friday">Thursday – Friday</option>
+<option value="Thursday – Saturday">Thursday – Saturday</option>
+<option value="Thursday – Sunday">Thursday – Sunday</option>
+<option value="Friday – Friday">Friday – Friday</option>
+<option value="Friday – Saturday">Friday – Saturday</option>
+<option value="Friday – Sunday">Friday – Sunday</option>
+<option value="Saturday – Saturday">Saturday – Saturday</option>
+<option value="Saturday – Sunday">Saturday – Sunday</option>
+<option value="Sunday – Sunday">Sunday – Sunday</option>
                         </select>
             </div><br>
              <p style="margin-left: 13%;"><b>Note : if your shop is 24 hour Open then seat Open time 00:00 And Closing time 00:00</b></p>

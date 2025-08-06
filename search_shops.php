@@ -20,7 +20,17 @@ if($category=="All")
      <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'>
   <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css'>
+  <script>
+setInterval(() => {
+  fetch('update_activity.php');
+}, 2000);
+</script>
    <style>
+     .this_card:hover {
+      transform: scale(1.05); /* Zoom effect */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
         #card{
   width: 18rem;margin-left:30px;
 }
@@ -92,7 +102,7 @@ margin-left:10%;font-size:16px
                 echo "<div class='row g-3 mx-1'>";
             }
             echo"
-      <div class='col-lg-3 col-md-6 col-sm-12 mb-4 my-4'>
+      <div class='col-lg-3 col-md-6 col-sm-12 mb-4 my-4 this_card'>
       <a href='details.php?shop=$shop_id' style='text-decoration:none;'>
   <div class='card shop-card h-100'>
     <div style='position: relative;'>
@@ -149,20 +159,30 @@ margin-left:10%;font-size:16px
   {
      echo "<li class='page-item'><a class='page-link' href='search_shops.php?prev=$Offset&search=$search&category=$category'>Previous</a></li>";
   }
-        for($i=1;$i<=$row_number;$i++)
-        {
-            $j=$i-1;
-            $num=$j*20;
-            if($num==$Offset)
-            {
-               echo"<li class='page-item active'><a class='page-link' href='search_shops.php?offset=$num&search=$search&category=$category'>$i</a></li>";
-            }
-            else
-            {
-              echo"<li class='page-item '><a class='page-link' href='search_shops.php?offset=$num&search=$search&category=$category'>$i</a></li>";
-            }
-           
+        for ($i = 1; $i <= $row_number; $i++) {
+    $j = $i - 1;
+    $num = $j * 20;
+    $currentPage = floor($Offset / 20) + 1;
+    if (
+        $i == 1 || $i == $row_number || 
+        ($i >= $currentPage - 2 && $i <= $currentPage + 2)
+    ) {
+        if ($i == $currentPage) {
+            echo "<li class='page-item active'>
+                    <a class='page-link' href='search_shops.php?offset=$num&search=$search&category=$category'>$i</a>
+                  </li>";
+        } else {
+            echo "<li class='page-item'>
+                    <a class='page-link' href='search_shops.php?offset=$num&search=$search&category=$category'>$i</a>
+                  </li>";
         }
+        $showDots = true;
+    } elseif ($showDots) {
+        // Show dots only once when needed
+        echo "<li class='page-item disabled'><a class='page-link'>...</a></li>";
+        $showDots = false;
+    }
+}
         $set=$Offset+20;
         if($set>=$rows)
         {
@@ -202,6 +222,11 @@ else
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css'>
    
   <style>
+    .this_card:hover {
+      transform: scale(1.05); /* Zoom effect */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
         #card{
   width: 22rem;margin-left:40px;
 }
@@ -266,7 +291,7 @@ else
                 echo "<div class='row mx-1'>";
             }
             echo"
-     <div class='col-lg-3 col-md-6 col-sm-12 mb-4 my-4'>
+     <div class='col-lg-3 col-md-6 col-sm-12 mb-4 my-4 this_card'>
       <a href='details.php?shop=$shop_id' style='text-decoration:none;'>
   <div class='card shop-card h-100'>
     <div style='position: relative;'>
