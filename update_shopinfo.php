@@ -7,6 +7,7 @@ session_start();
       }
    if(isset($_GET["shop"])) 
    {
+    $id=$_SESSION["id"];
     $shop_id=$_GET["shop"];
     include("connection.php");
     $shop_data="SELECT * FROM tm_shopinfo where shop_id=$shop_id";
@@ -15,6 +16,7 @@ session_start();
         $shop_row=$shop_result->fetch_assoc();
          $title=$shop_row["shop_title"];
             $shop_id=$shop_row["shop_id"];
+            $user_id=$shop_row["shopkeeper_id"];
             $location=$shop_row["shop_location"];
             $image=$shop_row["shop_image"];
              $src_img="uploads/shop_img/{$image}";
@@ -23,6 +25,11 @@ session_start();
             $Otime=$shop_row["shop_opening_time"];
             $Ctime=$shop_row["shop_closing_time"];
             $weekday=$shop_row["shop_open_days"];
+            if($id!=$user_id)
+            {
+                 header("location:errors_404.html");
+          exit;
+            }
             echo "<!DOCTYPE html>
         <html lang='en'>
         <head>
@@ -33,6 +40,7 @@ session_start();
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js' integrity='sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q' crossorigin='anonymous'></script>
      <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
      <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css'>
+     <link rel='icon' type='image/png' href='favicons.png' >
     <script>
         $(document).on('blur','#input_title',function(){
             const title=$(this).val().trim();

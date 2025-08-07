@@ -28,6 +28,7 @@
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js' integrity='sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q' crossorigin='anonymous'></script>
      <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
      <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css'>
+     <link rel='icon' type='image/png' href='favicons.png' >
     <script>
         $(document).on('blur','#input_title',function(){
             const title=$(this).val().trim();
@@ -303,7 +304,7 @@ $(document).on('click','#submit',function(e){
     </div>
     <div id='error_image' class='shop_error'></div>
   </div>
-   <button type='submit' class='btn btn-primary my-4' style='margin-left:40%;width:20%' id='submit'>Submit</button>    
+   <button type='submit' class='btn btn-primary my-4' style='margin-left:40%;' id='submit'>Submit</button>    
         </form>
     </div>
 

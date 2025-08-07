@@ -15,7 +15,7 @@ $html = "<!DOCTYPE html>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js'></script>
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css'>
-
+<link rel='icon' type='image/png' href='favicons.png' >
     <script>
     $(document).ready(function () {
         $('#result').hide();

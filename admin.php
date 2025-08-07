@@ -54,6 +54,7 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link rel='icon' type='image/png' href='favicons.png' >
         <script>
     setInterval(function () {
     $.ajax({
