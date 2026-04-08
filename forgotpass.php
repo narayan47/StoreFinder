@@ -40,12 +40,12 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';  // SMTP server
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'storefinder.dev@gmail.com';  // Your Gmail address
+    $mail->Username   = 'email@gmail.com';  // Your Gmail address
     $mail->Password   = 'yrnr umaa prsk lfld';     // Use App Password (NOT your Gmail password)
     $mail->SMTPSecure = 'tls';
     $mail->Port       = 587;
 
-    $mail->setFrom('storefinder.dev@gmail.com', 'StoreFinder');
+    $mail->setFrom('sender_emailAddress', 'StoreFinder'); //add email address 
     $mail->addAddress($email);
 
     $mail->isHTML(true);
